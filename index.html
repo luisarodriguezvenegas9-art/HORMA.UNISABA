@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HORMA – Chaquetas hechas a tu medida</title>
+<meta name="description" content="HORMA: chaquetas diseñadas online y confeccionadas en Bogotá con tus medidas reales. Hecha a tu medida. No a una talla.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400..700&display=swap">
+<style>
+  :root{
+    --hueso:#EDE6DA; --hueso-claro:#F7F2EA; --borde:#D9CFC0;
+    --carbon:#2E2B28; --gris:#5E5750; --gris-claro:#D9D0C3;
+    --arcilla:#B4694A; --arcilla-osc:#9A5436; --arcilla-clara:#C98A6B; --arena:#D6C2AE;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--hueso);color:var(--carbon);font-family:Inter,Arial,sans-serif;font-size:17px;line-height:1.55}
+  h1,h2,h3,p,ul{margin:0}
+  a{color:var(--arcilla-osc)}
+  .serif{font-family:Fraunces,Georgia,serif}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:14px;letter-spacing:3px;font-weight:600;color:var(--arcilla-osc);text-transform:uppercase}
+  .h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(34px,5vw,52px);line-height:1.1}
+  .muted{color:var(--gris)}
+  .btn{display:inline-block;text-decoration:none;padding:15px 28px;border-radius:999px;font-weight:600;transition:transform .15s ease,background .2s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-clay{background:var(--arcilla-osc);color:var(--hueso-claro)}
+  .btn-clay:hover{background:#86472c}
+  .btn-dark{background:var(--carbon);color:var(--hueso-claro)}
+  .btn-line{border:1.5px solid var(--carbon);color:var(--carbon)}
+  section{scroll-margin-top:80px}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:10;background:rgba(237,230,218,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--borde)}
+  nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:16px 24px;max-width:1200px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--carbon)}
+  .logo span{font-family:Fraunces,Georgia,serif;font-size:26px;font-weight:600;letter-spacing:6px}
+  .links{display:flex;flex-wrap:wrap;align-items:center;gap:26px;font-size:15px}
+  .links a:not(.btn){color:var(--carbon);text-decoration:none}
+  .links a:not(.btn):hover{color:var(--arcilla-osc)}
+  .links .btn{padding:11px 22px}
+
+  /* HERO */
+  .hero{display:flex;flex-wrap:wrap;align-items:center;gap:56px;padding-top:88px;padding-bottom:88px}
+  .hero-text{flex:1 1 460px;display:flex;flex-direction:column;gap:26px}
+  .hero h1{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(46px,7vw,76px);line-height:1.02}
+  .hero h1 i{color:var(--arcilla-osc)}
+  .hero-img{flex:1 1 400px;background:var(--arena);border-radius:24px;min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#4A433D;overflow:hidden}
+  .hero-img img{width:100%;height:100%;object-fit:cover}
+  .row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+  /* PROBLEMA */
+  .dark{background:var(--carbon);color:var(--hueso)}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px}
+  .stat{border-top:1px solid var(--gris);padding-top:24px;display:flex;flex-direction:column;gap:8px}
+  .stat .num{font-family:Fraunces,Georgia,serif;font-size:64px;line-height:1}
+  .stat p:last-child{color:var(--gris-claro)}
+  .pad{padding-top:96px;padding-bottom:96px;display:flex;flex-direction:column;gap:48px}
+
+  /* PASOS */
+  .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .card{background:var(--hueso-claro);border:1px solid var(--borde);border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:12px}
+  .card .n{font-family:Fraunces,Georgia,serif;font-size:40px;line-height:1;color:var(--arcilla-osc)}
+  .card h3{font-size:20px}
+
+  /* CONFIGURADOR */
+  .light{background:var(--hueso-claro);border-top:1px solid var(--borde);border-bottom:1px solid var(--borde)}
+  .config{display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start;padding-top:96px;padding-bottom:96px}
+  .preview{background:var(--hueso);border-radius:24px;min-height:440px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}
+  .preview svg path{transition:d .35s ease}
+
+  .preview-col{flex:1 1 400px;display:flex;flex-direction:column;gap:16px;position:sticky;top:96px}
+  .preview svg{width:260px;height:286px}
+  .summary{background:var(--hueso);border-radius:16px;padding:18px 20px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+  .opt{border:0;border-top:1px solid var(--borde);margin:0;padding:20px 0 0;display:flex;flex-direction:column;gap:12px;min-width:0}
+  .opt legend{font-size:16px;font-weight:600;padding:0;margin-bottom:12px;float:left;width:100%}
+  .opt legend + *{clear:both}
+  .step{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--carbon);color:var(--hueso-claro);font-size:12px;margin-right:6px}
+  .hint{font-size:15px}
+  .swatch-row{display:flex;flex-wrap:wrap;gap:12px}
+  .swatch{width:48px;height:48px;border-radius:50%;border:1px solid rgba(46,43,40,.25);cursor:pointer;box-shadow:0 0 0 0 transparent;transition:box-shadow .2s}
+  .swatch.sm{width:44px;height:44px}
+  .swatch[aria-pressed="true"]{box-shadow:0 0 0 3px var(--hueso-claro),0 0 0 5px var(--carbon)}
+  .swatch:focus-visible{outline:3px solid var(--arcilla);outline-offset:4px}
+  .text-in{font:600 18px Inter,Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;padding:12px 16px;border:1.5px solid var(--carbon);border-radius:12px;background:var(--hueso-claro);color:var(--carbon);width:140px;min-height:48px}
+  .text-in:focus{outline:3px solid var(--arcilla);outline-offset:2px}
+  .level-note{border-top:1px solid var(--borde);padding-top:20px;display:flex;flex-direction:column;gap:6px}
+  @media (max-width:900px){.preview-col{position:static}}
+  .options{flex:1 1 420px;display:flex;flex-direction:column;gap:28px}
+  .pills{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{min-height:48px;padding:12px 22px;border-radius:999px;border:1.5px solid var(--carbon);background:transparent;color:var(--carbon);font:600 15px Inter,Arial,sans-serif;cursor:pointer;transition:background .2s,color .2s}
+  .pill[aria-pressed="true"]{background:var(--carbon);color:var(--hueso-claro)}
+  .pill:focus-visible{outline:3px solid var(--arcilla);outline-offset:2px}
+  .level{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .level div{border:1px solid var(--borde);border-radius:14px;padding:14px;font-size:14px;color:var(--gris)}
+  .level b{display:block;color:var(--carbon);font-size:16px}
+  .total{border-top:1px solid var(--borde);padding-top:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+  .price{font-family:Fraunces,Georgia,serif;font-size:42px}
+
+  /* GARANTIA */
+  .two{display:flex;flex-wrap:wrap;gap:32px;padding-top:96px;padding-bottom:96px}
+  .box{flex:1 1 440px;border-radius:24px;padding:48px;display:flex;flex-direction:column;gap:18px}
+  .box h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:clamp(30px,4vw,44px);line-height:1.1}
+  .clay{background:var(--arcilla);color:#FBF6EF}
+  .clay .eyebrow{color:#FBF6EF}
+  .soft{background:var(--hueso-claro);border:1px solid var(--borde)}
+  .soft ul{padding-left:20px;display:flex;flex-direction:column;gap:8px;color:#4A433D}
+
+  /* QUOTE */
+  .quote{max-width:900px;margin:0 auto;padding:96px 24px;text-align:center;display:flex;flex-direction:column;gap:22px;align-items:center}
+  .quote .big{font-family:Fraunces,Georgia,serif;font-style:italic;font-size:clamp(44px,7vw,66px);line-height:1.1}
+  .quote .eyebrow{color:var(--arcilla-clara)}
+
+  /* STUDIO */
+  .studio{display:flex;flex-wrap:wrap;gap:56px;align-items:center;padding-top:96px;padding-bottom:96px}
+  .swatches{flex:1 1 400px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .sw{height:170px;border-radius:16px}
+
+  /* PUNTOS */
+  .points{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;padding-top:72px;padding-bottom:72px}
+  .points h3{font-family:Fraunces,Georgia,serif;font-size:26px;font-weight:500;margin-bottom:8px}
+
+  footer .top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;padding-top:72px}
+  footer .bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid var(--gris);margin-top:40px;padding:24px 0 40px;font-size:14px;color:#B5ACA1}
+  footer a{color:var(--hueso)}
+  .src{font-size:13px;color:#B5ACA1}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+  @media (max-width:640px){.links a:not(.btn){display:none}.box{padding:32px}.level{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <nav aria-label="Principal">
+    <a class="logo" href="#inicio" aria-label="HORMA, inicio">
+      <span>HORMA</span>
+      <svg aria-hidden="true" width="96" height="14" viewBox="0 0 96 14" stroke="#9A5436" stroke-width="1.5"><line x1="0" y1="7" x2="96" y2="7"/><line x1="1" y1="1" x2="1" y2="13"/><line x1="17" y1="4" x2="17" y2="10"/><line x1="33" y1="4" x2="33" y2="10"/><line x1="48" y1="1" x2="48" y2="13"/><line x1="63" y1="4" x2="63" y2="10"/><line x1="79" y1="4" x2="79" y2="10"/><line x1="95" y1="1" x2="95" y2="13"/></svg>
+    </a>
+    <div class="links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#configurador">Siluetas</a>
+      <a href="#garantia">Garantía</a>
+      <a href="#fitting-studio">Fitting Studio</a>
+      <a class="btn btn-dark" href="#configurador">Diseña tu chaqueta</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="inicio" class="wrap hero">
+    <div class="hero-text reveal">
+      <p class="eyebrow">HORMA 01 · Chaqueta a medida · Bogotá</p>
+      <h1>Hecha a tu medida.<br><i>No a una talla.</i></h1>
+      <p class="muted" style="font-size:20px;max-width:520px">Diseña tu chaqueta online, tómate las medidas con un video guiado y la confeccionamos en Bogotá con tus medidas reales.</p>
+      <div class="row">
+        <a class="btn btn-clay" href="#configurador">Diseña la tuya</a>
+        <a class="btn btn-line" href="#como-funciona">Cómo funciona</a>
+      </div>
+      <p class="muted" style="font-size:15px">Desde <b style="color:var(--carbon)">$349.000</b> · Lista en 10–14 días hábiles · 1 arreglo gratis en 30 días</p>
+    </div>
+    <!-- Para poner la foto del MVP: reemplaza el contenido de este div por <img src="tu-foto.jpg" alt="Chaqueta HORMA 01"> -->
+    <div class="hero-img reveal" role="img" aria-label="Espacio para la foto de la HORMA 01">
+      <svg aria-hidden="true" width="200" height="220" viewBox="0 0 200 220" fill="none" stroke="#2E2B28" stroke-width="2.5" stroke-linejoin="round"><path d="M70 20 L100 40 L130 20 L165 35 L190 140 L170 145 L152 82 L142 130 L152 200 L48 200 L58 130 L48 82 L30 145 L10 140 L35 35 Z"/><path d="M70 20 L88 92 L100 40 L112 92 L130 20"/><path d="M100 92 L100 200"/></svg>
+      <p style="font-size:15px;letter-spacing:2px">[FOTO DE LA HORMA 01]</p>
+    </div>
+  </section>
+
+  <section class="dark" aria-label="El problema">
+    <div class="wrap pad">
+      <h2 class="h2 reveal" style="max-width:820px">¿Cuántas veces algo te ha quedado <i style="color:var(--arcilla-clara)">casi</i> bien?</h2>
+      <div class="stats">
+        <div class="stat reveal"><p class="num">1 de 4</p><p>prendas compradas online en EE. UU. se devuelve.</p></div>
+        <div class="stat reveal"><p class="num" style="color:var(--arcilla-clara)">53%</p><p>de esas devoluciones son por talla y ajuste, no por estilo.</p></div>
+        <div class="stat reveal"><p class="num">81%</p><p>de las personas de 18 a 30 años que entrevistamos devolvió o dejó de usar una prenda por cómo le quedaba.</p></div>
+      </div>
+      <p class="serif reveal" style="font-size:30px;font-style:italic">El problema es la talla, no tu cuerpo.</p>
+      <p class="src">Fuentes: Coresight Research, citado en Eightx (2026); encuesta HORMA, n = 28, agosto 2026.</p>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="wrap pad">
+    <div class="reveal" style="display:flex;flex-direction:column;gap:12px">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2 class="h2">De tus medidas a tu puerta.</h2>
+    </div>
+    <div class="grid4">
+      <div class="card reveal"><p class="n">01</p><h3>Diseña a tu nivel</h3><p class="muted">Elige una silueta lista, ajusta mangas, cuello y solapa, o hazla totalmente a medida.</p></div>
+      <div class="card reveal"><p class="n">02</p><h3>Mídete con el video</h3><p class="muted">Un video guiado te acompaña paso a paso y revisamos que tus medidas sean coherentes entre sí.</p></div>
+      <div class="card reveal"><p class="n">03</p><h3>La hacemos en Bogotá</h3><p class="muted">Talleres locales la confeccionan solo para ti. Está lista en 10 a 14 días hábiles.</p></div>
+      <div class="card reveal"><p class="n">04</p><h3>Te queda, o la ajustamos</h3><p class="muted">Si algo no queda perfecto, la Horma Guarantee te da un arreglo gratis en 30 días.</p></div>
+    </div>
+  </section>
+
+  <section id="configurador" class="light">
+    <div class="wrap config">
+      <div class="preview-col reveal">
+        <div class="preview">
+          <svg id="jacket" role="img" aria-label="Vista previa de tu chaqueta" viewBox="0 0 200 220" stroke-linejoin="round">
+            <defs>
+              <pattern id="p-espiga" width="10" height="10" patternUnits="userSpaceOnUse">
+                <rect class="pbg" width="10" height="10"/>
+                <path class="pln" d="M0 0 L5 5 L10 0 M0 5 L5 10 L10 5" fill="none" stroke-width="1"/>
+              </pattern>
+              <pattern id="p-cuadros" width="14" height="14" patternUnits="userSpaceOnUse">
+                <rect class="pbg" width="14" height="14"/>
+                <path class="pln" d="M0 0.5 H14 M0.5 0 V14 M0 7 H14 M7 0 V14" fill="none" stroke-width="0.7"/>
+              </pattern>
+              <pattern id="p-rayas" width="8" height="8" patternUnits="userSpaceOnUse">
+                <rect class="pbg" width="8" height="8"/>
+                <path class="pln" d="M4 0 V8" fill="none" stroke-width="0.8"/>
+              </pattern>
+              <pattern id="p-pata" width="12" height="12" patternUnits="userSpaceOnUse">
+                <rect class="pbg" width="12" height="12"/>
+                <path class="pfill" d="M0 0 H6 V6 H0 Z M6 6 L12 12 H8 L6 10 Z M6 0 L9 3 L6 3 Z M0 6 L3 9 L0 9 Z" stroke="none"/>
+              </pattern>
+            </defs>
+            <path id="body" d="M70 20 L100 40 L130 20 L165 35 L190 140 L170 145 L152 82 L140 130 L152 200 L48 200 L60 130 L48 82 L30 145 L10 140 L35 35 Z" fill="#2E2B28" stroke="#2E2B28" stroke-width="2.5"/>
+            <path id="lining" d="M70 20 L88 92 L100 40 L112 92 L130 20 L100 40 Z" fill="#B4694A" stroke="none"/>
+            <path id="lapel" d="M70 20 L88 92 L100 40 L112 92 L130 20" fill="none" stroke="#EDE6DA" stroke-width="2"/>
+            <path id="center" d="M100 92 L100 200" fill="none" stroke="#EDE6DA" stroke-width="1.5"/>
+            <g id="buttons">
+              <circle cx="106" cy="112" r="4.2"/><circle cx="106" cy="138" r="4.2"/><circle cx="106" cy="164" r="4.2"/>
+            </g>
+            <text id="initials-svg" x="132" y="70" font-family="Fraunces, Georgia, serif" font-size="10" font-weight="600" text-anchor="middle" letter-spacing="1"></text>
+          </svg>
+          <p id="sil-label" style="font-size:14px;letter-spacing:2px" class="muted">HORMA 01 · ENTALLADA</p>
+        </div>
+        <div class="summary" aria-live="polite">
+          <p style="font-size:14px;letter-spacing:2px;font-weight:600;color:var(--arcilla-osc)">TU DISEÑO</p>
+          <p id="summary"></p>
+        </div>
+      </div>
+
+      <div class="options reveal">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p class="eyebrow">Diseña tu chaqueta</p>
+          <h2 class="h2" style="font-size:clamp(32px,4.5vw,48px)">Hazla tuya, paso a paso.</h2>
+        </div>
+
+        <fieldset class="opt">
+          <legend><span class="step">1</span> Silueta</legend>
+          <div class="pills">
+            <button class="pill" type="button" data-sil="entallada" aria-pressed="true">Entallada</button>
+            <button class="pill" type="button" data-sil="recta" aria-pressed="false">Recta</button>
+            <button class="pill" type="button" data-sil="oversize" aria-pressed="false">Oversize</button>
+          </div>
+          <p id="sil-text" class="muted hint">Marca la cintura y sigue la línea de tu cuerpo. Para un look pulido y estructurado.</p>
+        </fieldset>
+
+        <fieldset class="opt">
+          <legend><span class="step">2</span> Tela</legend>
+          <div class="pills">
+            <button class="pill" type="button" data-fab="estandar" aria-pressed="true">Estándar</button>
+            <button class="pill" type="button" data-fab="premium" aria-pressed="false">Premium</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="opt">
+          <legend><span class="step">3</span> Color · <span id="color-name" class="muted" style="font-weight:400">Carbón</span></legend>
+          <div class="swatch-row">
+            <button class="swatch" type="button" data-color="carbon" aria-pressed="true" aria-label="Carbón" style="background:#2E2B28"></button>
+            <button class="swatch" type="button" data-color="hueso" aria-pressed="false" aria-label="Hueso" style="background:#E3D8C6"></button>
+            <button class="swatch" type="button" data-color="arcilla" aria-pressed="false" aria-label="Arcilla" style="background:#B4694A"></button>
+            <button class="swatch" type="button" data-color="camel" aria-pressed="false" aria-label="Camel" style="background:#B98B5E"></button>
+            <button class="swatch" type="button" data-color="oliva" aria-pressed="false" aria-label="Oliva" style="background:#5F6146"></button>
+            <button class="swatch" type="button" data-color="noche" aria-pressed="false" aria-label="Azul noche" style="background:#1F2A3A"></button>
+            <button class="swatch" type="button" data-color="vino" aria-pressed="false" aria-label="Vino" style="background:#5C2630"></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="opt">
+          <legend><span class="step">4</span> Estampado</legend>
+          <div class="pills">
+            <button class="pill" type="button" data-pat="liso" aria-pressed="true">Liso</button>
+            <button class="pill" type="button" data-pat="espiga" aria-pressed="false">Espiga</button>
+            <button class="pill" type="button" data-pat="cuadros" aria-pressed="false">Cuadros</button>
+            <button class="pill" type="button" data-pat="rayas" aria-pressed="false">Rayas</button>
+            <button class="pill" type="button" data-pat="pata" aria-pressed="false">Pata de gallo</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="opt">
+          <legend><span class="step">5</span> Forro · <span id="lining-name" class="muted" style="font-weight:400">Arcilla</span></legend>
+          <div class="swatch-row">
+            <button class="swatch sm" type="button" data-lining="arcilla" aria-pressed="true" aria-label="Forro arcilla" style="background:#B4694A"></button>
+            <button class="swatch sm" type="button" data-lining="hueso" aria-pressed="false" aria-label="Forro hueso" style="background:#E3D8C6"></button>
+            <button class="swatch sm" type="button" data-lining="carbon" aria-pressed="false" aria-label="Forro carbón" style="background:#2E2B28"></button>
+            <button class="swatch sm" type="button" data-lining="salvia" aria-pressed="false" aria-label="Forro salvia" style="background:#9AA58C"></button>
+            <button class="swatch sm" type="button" data-lining="rosa" aria-pressed="false" aria-label="Forro rosa palo" style="background:#D9A9A0"></button>
+          </div>
+        </fieldset>
+
+        <fieldset class="opt">
+          <legend><span class="step">6</span> Botones</legend>
+          <div class="pills">
+            <button class="pill" type="button" data-btn="carey" aria-pressed="true">Carey</button>
+            <button class="pill" type="button" data-btn="metal" aria-pressed="false">Metal</button>
+            <button class="pill" type="button" data-btn="tono" aria-pressed="false">Al tono</button>
+            <button class="pill" type="button" data-btn="ocultos" aria-pressed="false">Ocultos</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="opt">
+          <legend><span class="step">7</span> Iniciales bordadas <span class="muted" style="font-weight:400">(opcional)</span></legend>
+          <label for="initials" class="muted hint" style="display:block;margin-bottom:8px">Hasta 3 letras, bordadas en el pecho.</label>
+          <input id="initials" type="text" maxlength="3" autocomplete="off" placeholder="Ej: SL" class="text-in">
+        </fieldset>
+
+        <div class="level-note">
+          <p style="font-size:15px;font-weight:600">¿Quieres ir más allá?</p>
+          <p class="muted hint">En el nivel <b style="color:var(--carbon)">Ajusta</b> cambias largo de manga, cuello y solapa. En <b style="color:var(--carbon)">Totalmente a medida</b> decides cada detalle.</p>
+        </div>
+
+        <div class="total">
+          <p class="price" id="price" aria-live="polite">$349.000</p>
+          <a class="btn btn-clay" href="#garantia">Continuar a mis medidas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="garantia" class="wrap two">
+    <div class="box clay reveal">
+      <p class="eyebrow">Horma Guarantee</p>
+      <h2>Si no te queda perfecta, la arreglamos gratis.</h2>
+      <p style="font-size:18px">Un arreglo sin costo dentro de los 30 días, con recogida y entrega incluidas. El riesgo de comprar sin probarte es nuestro, no tuyo.</p>
+    </div>
+    <div class="box soft reveal">
+      <p class="eyebrow">Lo que llega a tu casa</p>
+      <h2>Una caja que es solo tuya.</h2>
+      <ul>
+        <li>Tu chaqueta HORMA 01, en una caja reciclada</li>
+        <li>Una tarjeta con tus medidas</li>
+        <li>Tu propia cinta métrica HORMA</li>
+        <li>Una etiqueta cosida por dentro con tu nombre</li>
+        <li>Tu patrón guardado para el próximo pedido</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="dark" aria-label="Por qué HORMA">
+    <div class="quote reveal">
+      <p class="eyebrow">Por qué HORMA</p>
+      <p class="big">“No era la horma.”</p>
+      <p style="font-size:19px;color:var(--gris-claro);max-width:680px">Así nos describió una entrevistada la chaqueta que compró online en su talla de siempre. Esa palabra, la forma real de tu cuerpo, se volvió nuestra marca.</p>
+    </div>
+  </section>
+
+  <section id="fitting-studio" class="wrap studio">
+    <div class="reveal" style="flex:1 1 440px;display:flex;flex-direction:column;gap:18px">
+      <p class="eyebrow">HORMA Fitting Studio</p>
+      <h2 class="h2" style="font-size:clamp(32px,4.5vw,48px)">¿Prefieres tocar la tela y medirte en persona?</h2>
+      <p class="muted" style="font-size:18px">Los fines de semana estamos en ferias de diseño en Bogotá. Ven, prueba las siluetas, toca las telas y te tomamos las medidas.</p>
+      <p style="font-weight:600">Próximo pop-up: [FERIA · FECHA · LUGAR]</p>
+      <div class="row"><a class="btn btn-line" href="#">Ver fechas en Instagram</a></div>
+    </div>
+    <div class="swatches reveal" aria-label="Paleta de la marca">
+      <div><div class="sw" style="background:var(--hueso);border:1px solid var(--borde)"></div><p style="font-size:15px;margin-top:10px">Hueso</p></div>
+      <div><div class="sw" style="background:var(--carbon)"></div><p style="font-size:15px;margin-top:10px">Carbón</p></div>
+      <div><div class="sw" style="background:var(--arcilla)"></div><p style="font-size:15px;margin-top:10px">Arcilla</p></div>
+    </div>
+  </section>
+
+  <section class="light" aria-label="Lo que nos hace distintos">
+    <div class="wrap points">
+      <div class="reveal"><h3>La forma, no la decoración</h3><p class="muted">Personalizamos hombros, mangas, largo y solapa: donde está el problema real.</p></div>
+      <div class="reveal"><h3>Hecha en Bogotá</h3><p class="muted">Cada chaqueta la confecciona un taller local, por pedido.</p></div>
+      <div class="reveal"><h3>Cero sobreproducción</h3><p class="muted">Solo hacemos lo que vendemos. Sin inventario que termine en la basura.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="dark">
+  <div class="wrap">
+    <div class="top">
+      <h2 class="h2" style="font-size:clamp(32px,4.5vw,48px)">Deja de ajustarte a la talla.</h2>
+      <a class="btn" href="#configurador" style="background:var(--arcilla-clara);color:var(--carbon);font-weight:700">Diseña tu chaqueta</a>
+    </div>
+    <div class="bottom">
+      <p><span class="serif" style="letter-spacing:4px;color:var(--hueso);font-weight:600">HORMA</span> · Bogotá, Colombia</p>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <a href="#">Instagram</a>
+        <a href="#">TikTok</a>
+        <a href="#">[correo de contacto]</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== Configurador =====
+  var shapes = {
+    entallada: { label:'Entallada', text:'Marca la cintura y sigue la línea de tu cuerpo. Para un look pulido y estructurado.',
+      body:'M70 20 L100 40 L130 20 L165 35 L190 140 L170 145 L152 82 L140 130 L152 200 L48 200 L60 130 L48 82 L30 145 L10 140 L35 35 Z',
+      lapel:'M70 20 L88 92 L100 40 L112 92 L130 20', lining:'M70 20 L88 92 L100 40 L112 92 L130 20 L100 40 Z', center:'M100 92 L100 200' },
+    recta: { label:'Recta', text:'Cae derecha desde los hombros. La más versátil: para la oficina o para el fin de semana.',
+      body:'M70 20 L100 40 L130 20 L165 35 L190 140 L170 145 L155 80 L155 130 L155 200 L45 200 L45 130 L45 80 L30 145 L10 140 L35 35 Z',
+      lapel:'M70 20 L88 92 L100 40 L112 92 L130 20', lining:'M70 20 L88 92 L100 40 L112 92 L130 20 L100 40 Z', center:'M100 92 L100 200' },
+    oversize: { label:'Oversize', text:'Hombro caído y volumen relajado, pero con mangas y largo a tu medida.',
+      body:'M66 18 L100 40 L134 18 L178 44 L197 152 L175 157 L161 96 L163 150 L166 206 L34 206 L37 150 L39 96 L25 157 L3 152 L22 44 Z',
+      lapel:'M66 18 L86 96 L100 40 L114 96 L134 18', lining:'M66 18 L86 96 L100 40 L114 96 L134 18 L100 40 Z', center:'M100 96 L100 206' }
+  };
+  var colors = {
+    carbon:{name:'Carbón',hex:'#2E2B28',dark:true}, hueso:{name:'Hueso',hex:'#E3D8C6',dark:false},
+    arcilla:{name:'Arcilla',hex:'#B4694A',dark:true}, camel:{name:'Camel',hex:'#B98B5E',dark:false},
+    oliva:{name:'Oliva',hex:'#5F6146',dark:true}, noche:{name:'Azul noche',hex:'#1F2A3A',dark:true},
+    vino:{name:'Vino',hex:'#5C2630',dark:true}
+  };
+  var linings = {
+    arcilla:{name:'Arcilla',hex:'#B4694A'}, hueso:{name:'Hueso',hex:'#E3D8C6'}, carbon:{name:'Carbón',hex:'#2E2B28'},
+    salvia:{name:'Salvia',hex:'#9AA58C'}, rosa:{name:'Rosa palo',hex:'#D9A9A0'}
+  };
+  var patterns = { liso:'Liso', espiga:'Espiga', cuadros:'Cuadros', rayas:'Rayas', pata:'Pata de gallo' };
+  var buttonStyles = { carey:{name:'botones carey',hex:'#6B4226'}, metal:{name:'botones metal',hex:'#B8B2A7'}, tono:{name:'botones al tono',hex:null}, ocultos:{name:'botones ocultos',hex:null} };
+  var prices = { estandar:'$349.000', premium:'Hasta $449.000' };
+
+  var state = { sil:'entallada', fab:'estandar', color:'carbon', pat:'liso', lining:'arcilla', btn:'carey', initials:'' };
+
+  function mix(hex, amt){ // aclara (amt>0) u oscurece (amt<0) un color
+    var n = parseInt(hex.slice(1),16), r=n>>16, g=(n>>8)&255, b=n&255;
+    function f(c){ return Math.round(amt>0 ? c+(255-c)*amt : c*(1+amt)); }
+    return 'rgb(' + f(r) + ',' + f(g) + ',' + f(b) + ')';
+  }
+
+  function render(){
+    var s = shapes[state.sil], c = colors[state.color], l = linings[state.lining], b = buttonStyles[state.btn];
+    var $ = function(id){ return document.getElementById(id); };
+    $('body').setAttribute('d', s.body);
+    $('lapel').setAttribute('d', s.lapel);
+    $('lining').setAttribute('d', s.lining);
+    $('center').setAttribute('d', s.center);
+
+    // color + estampado
+    var lineCol = c.dark ? mix(c.hex, .28) : mix(c.hex, -.28);
+    document.querySelectorAll('.pbg').forEach(function(r){ r.setAttribute('fill', c.hex); });
+    document.querySelectorAll('.pln').forEach(function(p){ p.setAttribute('stroke', lineCol); });
+    document.querySelectorAll('.pfill').forEach(function(p){ p.setAttribute('fill', lineCol); });
+    $('body').setAttribute('fill', state.pat === 'liso' ? c.hex : 'url(#p-' + state.pat + ')');
+    var contrast = c.dark ? '#EDE6DA' : '#2E2B28';
+    $('lapel').setAttribute('stroke', contrast);
+    $('center').setAttribute('stroke', contrast);
+    $('lining').setAttribute('fill', l.hex);
+
+    // botones
+    var g = $('buttons');
+    g.style.display = state.btn === 'ocultos' ? 'none' : '';
+    var bHex = b.hex || (c.dark ? mix(c.hex, -.35) : mix(c.hex, -.2));
+    g.querySelectorAll('circle').forEach(function(ci){ ci.setAttribute('fill', bHex); ci.setAttribute('stroke', contrast); ci.setAttribute('stroke-width', '.8'); });
+
+    // iniciales
+    $('initials-svg').textContent = state.initials;
+    $('initials-svg').setAttribute('fill', contrast);
+
+    // textos
+    $('sil-label').textContent = 'HORMA 01 · ' + s.label.toUpperCase();
+    $('sil-text').textContent = s.text;
+    $('color-name').textContent = c.name;
+    $('lining-name').textContent = l.name;
+    $('price').textContent = prices[state.fab];
+    var parts = [s.label, 'tela ' + (state.fab === 'premium' ? 'premium' : 'estándar'), c.name.toLowerCase(),
+      patterns[state.pat].toLowerCase(), 'forro ' + l.name.toLowerCase(), b.name];
+    if (state.initials) parts.push('iniciales ' + state.initials);
+    $('summary').textContent = parts.join(' · ');
+  }
+
+  function bind(attr, key){
+    var btns = document.querySelectorAll('[data-' + attr + ']');
+    btns.forEach(function(btn){
+      btn.addEventListener('click', function(){
+        btns.forEach(function(x){ x.setAttribute('aria-pressed', x === btn ? 'true' : 'false'); });
+        state[key] = btn.getAttribute('data-' + attr);
+        render();
+      });
+    });
+  }
+  bind('sil','sil'); bind('fab','fab'); bind('color','color'); bind('pat','pat'); bind('lining','lining'); bind('btn','btn');
+  document.getElementById('initials').addEventListener('input', function(e){
+    var v = e.target.value.toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g,'').slice(0,3);
+    e.target.value = v; state.initials = v; render();
+  });
+  render();
+
+  // Animación suave al hacer scroll
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 }) : null;
+  document.querySelectorAll('.reveal').forEach(function(el){ io ? io.observe(el) : el.classList.add('in'); });
+</script>
+</body>
+</html>
